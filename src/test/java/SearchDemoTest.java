@@ -1,34 +1,26 @@
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
 public class SearchDemoTest {
     @Test
     public void testElementSearchMethods() {
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://slqamsk.github.io/demo/search-demo/");
+        open("https://slqamsk.github.io/demo/search-demo/");
 
-        WebElement submitBtn = driver.findElement(By.id("submit-button"));
-        assertTrue(submitBtn.isDisplayed());
+        By myLocator = By.id("submit-button");
+        SelenideElement myElement = Selenide.element(myLocator);
+        myElement.shouldBe(visible);
 
-        WebElement interestsField = driver.findElement(By.name("interests"));
-        assertTrue(interestsField.isDisplayed());
+        element(By.id("submit-button")).shouldBe(visible);
+        $(By.id("submit-button")).shouldBe(visible);
 
-        WebElement navLink = driver.findElement(By.className("nav-link"));
-        assertTrue(navLink.isDisplayed());
-
-        WebElement inputField = driver.findElement(By.tagName("input"));
-        assertTrue(inputField.isDisplayed());
-
-        WebElement contactLink = driver.findElement(By.linkText("Контакты и обратная связь"));
-        assertTrue(contactLink.isDisplayed());
-
-        WebElement longLink = driver.findElement(By.partialLinkText("длинный"));
-        assertTrue(longLink.isDisplayed());
-
-        //driver.quit();
+        $(By.name("interests")).shouldBe(visible);
+        $(By.className("nav-link")).shouldBe(visible);
+        $(By.tagName("input")).shouldBe(visible);
+        $(By.linkText("Контакты и обратная связь")).shouldBe(visible);
+        $(By.partialLinkText("длинный")).shouldBe(visible);
     }
 }
+

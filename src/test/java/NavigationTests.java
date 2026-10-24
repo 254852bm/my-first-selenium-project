@@ -1,20 +1,20 @@
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
+import static com.codeborne.selenide.Selenide.*;
 public class NavigationTests {
     @Test
     void testNavigation() {
-        WebDriver driver = new ChromeDriver();
-
-        driver.get("https://ya.ru/");
-        driver.get("https://ru.wikipedia.org");
-        driver.get("https://ru.wikipedia.org/wiki/Selenium");
-
-        driver.navigate().back();
-        driver.navigate().back();
-        driver.navigate().forward();
-
-        driver.quit();
+        open("https://ya.ru/");
+        sleep(3_000);
+        open("https://ru.wikipedia.org");
+        sleep(3_000);
+        open("https://ru.wikipedia.org/wiki/Selenium");
+        sleep(3_000);
+        back();
+        sleep(3_000);
+        back();
+        sleep(3_000);
+        forward();
+        sleep(10_000);
     }
 }
+
